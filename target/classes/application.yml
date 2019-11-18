@@ -1,6 +1,7 @@
 spring:
   # kafka 相关配置
   kafka:
+    # 生产者
     producer:
       bootstrap-servers: 47.103.211.111:9092
       retries: 0
@@ -8,3 +9,11 @@ spring:
       batch-size: 16384
       # 1 mb
       buffer-memory: 1048576
+
+    # 消费者
+    consumer:
+      bootstrap-servers: 47.103.211.111:9092
+      group-id: test
+      enable-auto-commit: true
+      max-poll-records: 100
+      auto-offset-reset: earliest

@@ -1,9 +1,12 @@
 package com.idiotalex;
 
+import com.alibaba.fastjson.JSON;
+import com.idiotalex.model.Message;
 import org.junit.Test;
 import org.springframework.kafka.core.KafkaTemplate;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 public class KafkaTest extends AppTest {
 
@@ -12,7 +15,11 @@ public class KafkaTest extends AppTest {
 
     @Test
     public void testSendKafkaMessage() {
-        kafkaTemplate.send("test", "hello world");
+        Message message = new Message();
+        message.setId(1L);
+        message.setMsg("hello world");
+        message.setCreateTime(new Date());
+        kafkaTemplate.send("test", JSON.toJSONString(message));
         logger.info("发送消息完成...");
     }
 }

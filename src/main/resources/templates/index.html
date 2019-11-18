@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kafka demo</title>
+    <style>
+        .wrapper{
+            width: 600px;
+            margin: 20px auto;
+        }
+        #btn-send{
+            display: block;
+            width: 373px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div>
+            <p>发送消息</p>
+            <textarea id="send" rows="4" cols="50">hello world</textarea>
+            <button id="btn-send" type="button" onclick="sendMsg()">发送</button>
+        </div>
+    </div>
+</body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+    function sendMsg() {
+        const msg = $('#send').val()
+        $.post('/message/send', {message: msg}, function (res) {
+            if (res.code === 0){
+                alert('发送成功')
+            }
+        })
+    }
+</script>
+</html>

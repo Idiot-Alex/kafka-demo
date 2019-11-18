@@ -1,4 +1,10 @@
 spring:
+  resources:
+    static-locations: classpath:/templates/
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+
   # kafka 相关配置
   kafka:
     # 生产者
